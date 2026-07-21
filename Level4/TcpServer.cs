@@ -44,9 +44,6 @@ public class TcpServer(int port)
         // Finally request body
         Console.WriteLine(parsedRequest.Body);
 
-        // Send a response back to the client
-        // HttpResponseWriter.WriteResponse(stream, 200, "OK", "Hello, world!");
-
         router.Dispatch(parsedRequest, stream);
 
         client.Close();
