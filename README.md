@@ -13,6 +13,7 @@ The project lives entirely inside `System.Net.Sockets` (raw TCP). No web framewo
 | `Level1/` | Raw TCP server. Listens on port 5000, accepts one connection at a time, reads the raw bytes, prints them to the console, then closes. |
 | `Level2/` | Adds an `HttpRequestReader` that parses raw HTTP into a structured `HttpRequest` record (method, path, version, headers, body). The server now prints a formatted request instead of raw bytes. |
 | `Level3/` | Adds an `HttpResponseWriter` that sends a proper HTTP response (status line, headers, body) back to the client. The server now reads a request and replies with "Hello, world!". |
+| `Level4/` | Adds a `Router` class that maps method+path pairs to handler functions. The server delegates to the router, which dispatches to the matching handler or returns a 404. |
 
 ## Running
 
