@@ -26,11 +26,23 @@ public class TcpServer(int port)
         // The two-way pipe of bytes to and from the client
         NetworkStream stream = client.GetStream();
 
-        byte[] buffer = new byte[4096];
-        int bytesRead = stream.Read(buffer, 0, buffer.Length);
+        var rawData = HttpRequestReader.ReadRawRequest(stream);
+        var parsedRequest = HttpRequestReader.ParseRequest(rawData);
 
-        string rawData = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-        Console.WriteLine(rawData);
+        // Request Signature
+        Console.WriteLine($"{parsedRequest.Method} {parsedRequest.Path} {parsedRequest.Version}");
+
+        // Headers
+        foreach (var kvp in parsedRequest.Headers)
+        {
+            Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+        }
+
+        // Newline separating body from headers
+        Console.WriteLine();
+
+        // Finally request body
+        Console.WriteLine(parsedRequest.Body);
 
         client.Close();
     }
