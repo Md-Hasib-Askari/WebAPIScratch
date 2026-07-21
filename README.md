@@ -11,9 +11,7 @@ The project lives entirely inside `System.Net.Sockets` (raw TCP). No web framewo
 | Level | Description |
 | --- | --- |
 | `Level1/` | Raw TCP server. Listens on port 5000, accepts one connection at a time, reads the raw bytes, prints them to the console, then closes. |
-| `Level2/` | _(placeholder)_ |
-
-As new levels are added, the README will be updated with what each level introduces.
+| `Level2/` | Adds an `HttpRequestReader` that parses raw HTTP into a structured `HttpRequest` record (method, path, version, headers, body). The server now prints a formatted request instead of raw bytes. |
 
 ## Running
 
