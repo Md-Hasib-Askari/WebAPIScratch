@@ -14,7 +14,8 @@ The project lives entirely inside `System.Net.Sockets` (raw TCP). No web framewo
 | `Level2/` | Adds an `HttpRequestReader` that parses raw HTTP into a structured `HttpRequest` record (method, path, version, headers, body). The server now prints a formatted request instead of raw bytes. |
 | `Level3/` | Adds an `HttpResponseWriter` that sends a proper HTTP response (status line, headers, body) back to the client. The server now reads a request and replies with "Hello, world!". |
 | `Level4/` | Adds a `Router` class that maps method+path pairs to handler functions. The server delegates to the router, which dispatches to the matching handler or returns a 404. |
-| `Level5/` | Adds a `Pipeline` class that implements a middleware chain (Chain of Responsibility pattern). Middleware components wrap the next handler, enabling pre/post processing around request handling. |
+| `Level5/` | Adds a `Pipeline` class that implements a middleware chain (Chain of Responsibility pattern). `RequestDelegate` and `Middleware` delegates enable components like logging and auth to wrap the router. `TcpServer.Start` now accepts a `RequestDelegate` instead of calling the router directly. |
+| `Level6/` | Introduces a hand-rolled DI container (`ServiceContainer`), domain model (`AppUser`), repository interface (`IUserRepository`), and a concrete `UserRepository`. The `/users` endpoint resolves the repository from the container to serve real user data. |
 
 ## Running
 
