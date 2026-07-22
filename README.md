@@ -4,7 +4,7 @@ Building a web API from scratch in C# without ASP.NET, progressing level by leve
 
 ## How It Works
 
-The project lives entirely inside `System.Net.Sockets` (raw TCP). No web frameworks, no middleware pipelines, no routing libraries. Every layer is hand-built: TCP acceptance, HTTP parsing, routing, serialization, and so on.
+The project lives entirely inside `System.Net.Sockets` (raw TCP). No web frameworks, no off-the-shelf middleware, no routing libraries. Every layer is hand-built: TCP acceptance, HTTP parsing, routing, middleware pipeline, and so on.
 
 ## Levels
 
@@ -14,6 +14,7 @@ The project lives entirely inside `System.Net.Sockets` (raw TCP). No web framewo
 | `Level2/` | Adds an `HttpRequestReader` that parses raw HTTP into a structured `HttpRequest` record (method, path, version, headers, body). The server now prints a formatted request instead of raw bytes. |
 | `Level3/` | Adds an `HttpResponseWriter` that sends a proper HTTP response (status line, headers, body) back to the client. The server now reads a request and replies with "Hello, world!". |
 | `Level4/` | Adds a `Router` class that maps method+path pairs to handler functions. The server delegates to the router, which dispatches to the matching handler or returns a 404. |
+| `Level5/` | Adds a `Pipeline` class that implements a middleware chain (Chain of Responsibility pattern). Middleware components wrap the next handler, enabling pre/post processing around request handling. |
 
 ## Running
 
