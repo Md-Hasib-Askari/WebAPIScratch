@@ -16,6 +16,8 @@ The project lives entirely inside `System.Net.Sockets` (raw TCP). No web framewo
 | `Level4/` | Adds a `Router` class that maps method+path pairs to handler functions. The server delegates to the router, which dispatches to the matching handler or returns a 404. |
 | `Level5/` | Adds a `Pipeline` class that implements a middleware chain (Chain of Responsibility pattern). `RequestDelegate` and `Middleware` delegates enable components like logging and auth to wrap the router. `TcpServer.Start` now accepts a `RequestDelegate` instead of calling the router directly. |
 | `Level6/` | Introduces a hand-rolled DI container (`ServiceContainer`), domain model (`AppUser`), repository interface (`IUserRepository`), and a concrete `UserRepository`. The `/users` endpoint resolves the repository from the container to serve real user data. |
+| `Level7/` | Adds a `Controllers` folder with `UserController` following the ASP.NET Core controller pattern. Introduces `ILogger` interface and `Logger` implementation in `Common`. Controllers receive dependencies via constructor injection. Logging middleware now uses `ILogger` resolved from the DI container. |
+| `Level8/` | Adds attribute-based routing with `RouteAttribute` and `ControllerRegistrar`. Controller methods are decorated with `[Route("GET", "/path")]` and automatically discovered via reflection, eliminating manual route registration. Implements `POST /users` with JSON body deserialization via `System.Text.Json` and DTO validation. |
 
 ## Running
 
